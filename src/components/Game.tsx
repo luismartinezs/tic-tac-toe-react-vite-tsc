@@ -9,7 +9,7 @@ const Square = ({ value, onClick }) => {
   );
 };
 
-const Board = () => {
+const Board = (props) => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
 
@@ -26,7 +26,7 @@ const Board = () => {
   };
 
   const renderSquare = (i) => (
-    <Square value={squares[i]} onClick={() => handleClick(i)} />
+    <Square value={props.squares[i]} onClick={() => props.onClick(i)} />
   );
 
   const winner = calculateWinner(squares)
@@ -60,6 +60,11 @@ const Board = () => {
 };
 
 const Game = () => {
+  const [history, setHistory] = useState({
+    squares: Array(9).fill(null),
+    isXNext: true
+  })
+
   return (
     <div className="game">
       <div className="game-board">
