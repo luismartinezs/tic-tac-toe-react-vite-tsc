@@ -1,4 +1,5 @@
 import { useState } from "react";
+import produce from "immer";
 
 const Square = ({ value, onClick }) => {
   return (
@@ -10,18 +11,22 @@ const Square = ({ value, onClick }) => {
 
 const Board = () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
+  const [isXNext, setIsXNext] = useState(true);
 
   const handleClick = (i) => {
-    const _squares = squares.slice();
-    _squares[i] = "X";
-    setSquares(_squares);
+    setSquares(
+      produce((draft) => {
+        draft[i] = isXNext ? "X" : "O";
+      })
+    );
+    setIsXNext(!isXNext);
   };
 
   const renderSquare = (i) => (
     <Square value={squares[i]} onClick={() => handleClick(i)} />
   );
 
-  const status = "Next player: X";
+  const status = `Next player: ${isXNext ? 'X' : 'O'}`;
 
   return (
     <div>

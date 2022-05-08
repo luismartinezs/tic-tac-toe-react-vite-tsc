@@ -16,3 +16,10 @@ Steps
 - Pass to the Square as prop a method to handle click event
 - Remove value state from Square, and use props instead
 - On clicking a Square, click handler method replaces the value of that index with an 'X' in squares state
+- Install Immer `pnpm install immer`
+- Use immer in setSquares
+  - https://immerjs.github.io/immer/example-setstate
+- Add a xIsNext boolean state to Board
+- Each time a Square is clicked, toggle xIsNext
+- If xIsNext is true, fill Square with X, otherwise with O
+- Next player message is X or O depending on xIsNext value
