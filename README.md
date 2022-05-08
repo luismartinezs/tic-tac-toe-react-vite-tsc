@@ -1,7 +1,7 @@
-# React + typescript playground
+# Tic tac toe
 
-I created this project to understand how to use typescript in React
+Tic tac toe with react hooks and typescript
 
-Resources:
+Done mostly for practice
 
-https://react-typescript-cheatsheet.netlify.app/docs/basic/setup
+Based on this: https://reactjs.org/tutorial/tutorial.html
