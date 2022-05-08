@@ -23,3 +23,4 @@ Steps
 - Each time a Square is clicked, toggle xIsNext
 - If xIsNext is true, fill Square with X, otherwise with O
 - Next player message is X or O depending on xIsNext value
+- Paste `calculateWinner` function from here: https://reactjs.org/tutorial/tutorial.html#declaring-a-winner
