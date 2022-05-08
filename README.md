@@ -9,3 +9,10 @@ Based on this: https://reactjs.org/tutorial/tutorial.html
 Steps
 
 - Start with starter (static) code
+- Add a value state to Square
+- When clicking a Square, set its value to "X"
+- Add squares state to the Board, initialize with array of length 9 with null values
+- Pass as props to the Square the i-th value of squares state
+- Pass to the Square as prop a method to handle click event
+- Remove value state from Square, and use props instead
+- On clicking a Square, click handler method replaces the value of that index with an 'X' in squares state
