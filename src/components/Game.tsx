@@ -1,5 +1,5 @@
 import { useState } from "react";
-import produce from "immer";
+import produce, { current } from "immer";
 
 const Square = ({ value, onClick }) => {
   return (
@@ -15,7 +15,7 @@ const Board = (props) => {
 
   const handleClick = (i) => {
     if (calculateWinner(squares) || squares[i]) {
-      return
+      return;
     }
     setSquares(
       produce((draft) => {
@@ -29,12 +29,12 @@ const Board = (props) => {
     <Square value={props.squares[i]} onClick={() => props.onClick(i)} />
   );
 
-  const winner = calculateWinner(squares)
-  let status
+  const winner = calculateWinner(squares);
+  let status;
   if (winner) {
-    status = `Winner: ${winner}`
+    status = `Winner: ${winner}`;
   } else {
-    status = `Next player: ${isXNext ? 'X' : 'O'}`;
+    status = `Next player: ${isXNext ? "X" : "O"}`;
   }
 
   return (
@@ -60,15 +60,20 @@ const Board = (props) => {
 };
 
 const Game = () => {
-  const [history, setHistory] = useState({
-    squares: Array(9).fill(null),
-    isXNext: true
-  })
+  const [history, setHistory] = useState([
+    {
+      squares: Array(9).fill(null),
+    },
+  ]);
+
+  const [isXNext, setIsXNext] = useState(true);
+
+  const current = history[history.length - 1];
 
   return (
     <div className="game">
       <div className="game-board">
-        <Board />
+        <Board squares={current.squares} />
       </div>
       <div className="game-info">
         <div>{/* status */}</div>
