@@ -14,6 +14,9 @@ const Board = () => {
   const [isXNext, setIsXNext] = useState(true);
 
   const handleClick = (i) => {
+    if (calculateWinner(squares) || squares[i]) {
+      return
+    }
     setSquares(
       produce((draft) => {
         draft[i] = isXNext ? "X" : "O";
@@ -26,7 +29,13 @@ const Board = () => {
     <Square value={squares[i]} onClick={() => handleClick(i)} />
   );
 
-  const status = `Next player: ${isXNext ? 'X' : 'O'}`;
+  const winner = calculateWinner(squares)
+  let status
+  if (winner) {
+    status = `Winner: ${winner}`
+  } else {
+    status = `Next player: ${isXNext ? 'X' : 'O'}`;
+  }
 
   return (
     <div>
