@@ -1,8 +1,10 @@
+import Game from '@/components/Game'
+
 function App(): JSX.Element {
 
   return (
     <div>
-      Tic tac toe
+      <Game />
     </div>
   )
 }
