@@ -29,17 +29,8 @@ const Board = (props) => {
     <Square value={props.squares[i]} onClick={() => props.onClick(i)} />
   );
 
-  const winner = calculateWinner(squares);
-  let status;
-  if (winner) {
-    status = `Winner: ${winner}`;
-  } else {
-    status = `Next player: ${isXNext ? "X" : "O"}`;
-  }
-
   return (
     <div>
-      <div className="status">{status}</div>
       <div className="board-row">
         {renderSquare(0)}
         {renderSquare(1)}
@@ -69,14 +60,21 @@ const Game = () => {
   const [isXNext, setIsXNext] = useState(true);
 
   const current = history[history.length - 1];
+  const winner = calculateWinner(current.squares);
+  let status;
+  if (winner) {
+    status = `Winner: ${winner}`;
+  } else {
+    status = `Next player: ${isXNext ? "X" : "O"}`;
+  }
 
   return (
     <div className="game">
       <div className="game-board">
-        <Board squares={current.squares} />
+        <Board squares={current.squares} onClick={(i) => handleClick(i)} />
       </div>
       <div className="game-info">
-        <div>{/* status */}</div>
+        <div>{status}</div>
         <ol>{/* TODO */}</ol>
       </div>
     </div>

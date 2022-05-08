@@ -30,3 +30,6 @@ Steps
 - Add a boolean state xIsNext to Game
 - renderSquare uses squares and onClick from props
 - Pass to Board the most recent history
+- Compute status in Game rather than Board
+- Pass to Board a click handler
+- Remove the status from the Board
