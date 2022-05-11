@@ -45,7 +45,7 @@ const Game = () => {
   const [isXNext, setIsXNext] = useState(true);
   const [stepNumber, setStepNumber] = useState(0);
 
-  const current = history.at(-1);
+  const current = history[stepNumber];
 
   const handleClick = (i) => {
     const _history = history.slice(0, stepNumber + 1);
@@ -72,7 +72,6 @@ const Game = () => {
   }
 
   const jumpTo = (step) => {
-    console.log(step);
     setStepNumber(step);
     setIsXNext(step % 2 === 0);
   };

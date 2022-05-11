@@ -6,9 +6,9 @@ Done mostly for practice
 
 Based on this: https://reactjs.org/tutorial/tutorial.html
 
-Steps
+## Steps
 
-- Start with starter (static) code
+- Start with starter (static) code: [https://codepen.io/gaearon/pen/oWWQNa?editors=0010](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)
 - Add a value state to Square
 - When clicking a Square, set its value to "X"
 - Add squares state to the Board, initialize with array of length 9 with null values
@@ -44,3 +44,4 @@ Steps
 - Add jumpTo method to mapped moves, that takes in move (index) and that sets stepNumber and xIsNext value
 - In the handleClick method, update stepNumber
 - In the handleClick method, use history from start to current stepNumber, and push the next squares to it
+- Pass to Board current step depending on the value of stepNumber, rather than the last history
