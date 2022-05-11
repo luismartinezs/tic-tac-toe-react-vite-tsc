@@ -33,3 +33,14 @@ Steps
 - Compute status in Game rather than Board
 - Pass to Board a click handler
 - Remove the status from the Board
+- Move handleClick from Board to Game
+- Remove squares and xIsNext state from Board
+- Destructure props on Board
+- Update handleClick method to use Game state
+- Map over history of moves and return a list of buttons, with labels "Go to game start" and "Go to move # ..."
+- Add a key to the mapped elements
+- Render the map of moves
+- Add a stepNumber of the Game state
+- Add jumpTo method to mapped moves, that takes in move (index) and that sets stepNumber and xIsNext value
+- In the handleClick method, update stepNumber
+- In the handleClick method, use history from start to current stepNumber, and push the next squares to it
