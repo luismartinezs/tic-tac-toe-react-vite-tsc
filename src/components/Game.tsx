@@ -1,5 +1,4 @@
 import { useState } from "react";
-import produce, { current } from "immer";
 
 const Square = ({ value, onClick }) => {
   return (
