@@ -8,9 +8,12 @@ body {
   @apply bg-primary-100 text-primary-800 h-screen overflow-hidden text-base m-8;
 }
 
-ol,
-ul {
-  @apply pl-8;
+.select-move {
+  @apply rounded-full border border-primary-500 px-4 my-1;
+}
+
+.select-move.active {
+  @apply font-bold bg-primary-200;
 }
 
 .board-row:after {
@@ -20,19 +23,20 @@ ul {
 }
 
 .status {
-  @apply mb-3;
+  @apply mb-3 font-bold text-xl;
 }
 
 .square {
+  --size: 60px;
   float: left;
-  font-size: 24px;
+  font-size: calc(var(--size) - 10px);
   font-weight: bold;
-  line-height: 34px;
-  height: 34px;
+  line-height: var(--size);
+  height: var(--size);
   margin-right: -1px;
   margin-top: -1px;
-  width: 34px;
-  @apply border border-primary-500 bg-transparent text-primary-800 p-0 text-center;
+  width: var(--size);
+  @apply border border-primary-500 bg-transparent text-primary-800 p-0 flex items-center justify-center text-center;
 }
 
 .square:focus {
@@ -48,5 +52,5 @@ ul {
 }
 
 .game-info {
-  @apply ml-5;
+  @apply text-lg ml-5;
 }

@@ -79,7 +79,7 @@ const Game = () => {
     const desc = move ? `Go to move # ${move}` : "Go to game start";
     return (
       <li key={move}>
-        <button onClick={() => jumpTo(move)}>{desc}</button>
+        <button className={move === stepNumber ? 'select-move active' : 'select-move'} onClick={() => jumpTo(move)}>{desc}</button>
       </li>
     );
   });
@@ -90,7 +90,7 @@ const Game = () => {
         <Board squares={current.squares} onClick={(i) => handleClick(i)} />
       </div>
       <div className="game-info">
-        <div>{status}</div>
+        <div className="status">{status}</div>
         <ol>{moves}</ol>
       </div>
     </div>
