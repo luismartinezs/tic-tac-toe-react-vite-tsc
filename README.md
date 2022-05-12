@@ -8,7 +8,9 @@ Based on this: https://reactjs.org/tutorial/tutorial.html
 
 ## Steps
 
-- Start with starter (static) code: [https://codepen.io/gaearon/pen/oWWQNa?editors=0010](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)
+- Serve app with `pnpm dev` and open [http://localhost:3000/](http://localhost:3000/) in a browser
+- See how finished app works, then click `Show start` button. Your goal is to edit `GameStart.tsx` file until the game works
+  - The starting code is adapted from this: [https://codepen.io/gaearon/pen/oWWQNa?editors=0010](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)
 - Add a value state to Square
 - When clicking a Square, set its value to "X"
 - Add squares state to the Board, initialize with array of length 9 with null values
