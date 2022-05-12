@@ -4,21 +4,21 @@ Tic tac toe with react hooks and typescript
 
 Done mostly for practice
 
-Based on this: https://reactjs.org/tutorial/tutorial.html
+Based on this: [https://reactjs.org/tutorial/tutorial.html](https://reactjs.org/tutorial/tutorial.html)
 
 ## Steps
 
 - Serve app with `pnpm dev` and open [http://localhost:3000/](http://localhost:3000/) in a browser
-- See how finished app works, then click `Show start` button. Your goal is to edit `GameStart.tsx` file until the game works
+- Click the `Show finish` button to see how finished app works, then click `Show start`. Your goal is to edit `GameStart.tsx` file until the game works
   - The starting code is adapted from this: [https://codepen.io/gaearon/pen/oWWQNa?editors=0010](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)
-- Add a value state to Square
+- Add a `value` state to Square, with initial value `null`
 - When clicking a Square, set its value to "X"
 - Add squares state to the Board, initialize with array of length 9 with null values
 - Pass as props to the Square the i-th value of squares state
 - Pass to the Square as prop a method to handle click event
 - Remove value state from Square, and use props instead
 - On clicking a Square, click handler method replaces the value of that index with an 'X' in squares state
-- Install Immer `pnpm install immer`
+- OPTIONAL: Install Immer `pnpm install immer`
 - Use immer in setSquares
   - https://immerjs.github.io/immer/example-setstate
 - Add a xIsNext boolean state to Board

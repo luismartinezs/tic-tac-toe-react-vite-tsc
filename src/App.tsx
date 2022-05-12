@@ -3,7 +3,7 @@ import GameStart from "@/components/GameStart";
 import { useState } from "react";
 
 function App(): JSX.Element {
-  const [showFinished, setShowFinished] = useState(true);
+  const [showFinished, setShowFinished] = useState(false);
 
   return (
     <div>
