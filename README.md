@@ -28,7 +28,7 @@ Based on this: [https://reactjs.org/tutorial/tutorial.html](https://reactjs.org/
 - Paste `calculateWinner` function from here: https://reactjs.org/tutorial/tutorial.html#declaring-a-winner
 - Status message shows something like 'Winner: X' as soon as one team wins
 - If there is a winner or the square is full, ignore click on Square (return before doing anything else)
-- Add a history state to the Game, which has an array of squares
+- Add a history state to the Game, which has an array of squares (arrays of length 9 pre-filled with null)
 - Add a boolean state xIsNext to Game
 - renderSquare uses squares and onClick from props
 - Pass to Board the most recent history

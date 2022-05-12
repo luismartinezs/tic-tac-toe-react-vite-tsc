@@ -1,4 +1,6 @@
-function calculateWinner(squares) {
+import type { Square } from "@/types";
+
+function calculateWinner(squares: Array<Square>): Square {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -18,4 +20,4 @@ function calculateWinner(squares) {
   return null;
 }
 
-export default calculateWinner
+export default calculateWinner;

@@ -58,8 +58,9 @@ const Game = () => {
 
     squares[i] = isXNext ? "X" : "O";
 
-    setHistory(_history.concat({ squares }));
-    setStepNumber(_history.length);
+    const newHistory = _history.concat({ squares })
+    setHistory(newHistory);
+    setStepNumber(newHistory.length);
     setIsXNext(!isXNext);
   };
 
