@@ -1,5 +1,5 @@
 /// <reference types="vitest" />
-
+import { alias } from "./alias";
 import { defineConfig } from "vite";
 
 export default defineConfig({
@@ -9,5 +9,8 @@ export default defineConfig({
     coverage: {
       reporter: ["text", "json", "html"],
     },
+  },
+  resolve: {
+    alias,
   },
 });
