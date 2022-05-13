@@ -36,6 +36,10 @@ describe("Board", () => {
   it("Renders board", () => {
     const squares = Array(9).fill(null);
     const component = create(<Board squares={squares} onClick={() => null} />);
+    // console.log(component.root.findByType(Square))
+    // console.log(component.root.findAllByType(Square)) // all Square children
+    // console.log(component.root.props);
+    // console.log(component.root.children);
     let tree = toJson(component);
     expect(tree).toMatchSnapshot();
   });
