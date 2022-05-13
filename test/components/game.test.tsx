@@ -13,17 +13,22 @@ function toJson(component: renderer.ReactTestRenderer) {
 describe("Square", () => {
   it("Renders a button", () => {
     const component = renderer.create(
-      <Square value='X' onClick={() => null} />
+      <Square value="X" onClick={() => null} />
     );
     let tree = toJson(component);
     expect(tree).toMatchSnapshot();
   });
 });
 
-describe('Board', () => {
-  it.todo('test')
-})
+describe("Board", () => {
+  const squares = Array(9).fill(null);
+  const component = renderer.create(
+    <Board squares={squares} onClick={() => null} />
+  );
+  it.todo("test");
+});
 
-describe('Game', () => {
-  it.todo('test')
-})
+describe("Game", () => {
+  const component = renderer.create(<Game />);
+  it.todo("test");
+});
