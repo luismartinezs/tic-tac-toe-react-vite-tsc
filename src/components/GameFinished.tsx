@@ -60,7 +60,7 @@ const Game = () => {
 
     const newHistory = _history.concat({ squares });
     setHistory(newHistory);
-    setStepNumber(newHistory.length);
+    setStepNumber(newHistory.length - 1);
     setIsXNext(!isXNext);
   };
 
