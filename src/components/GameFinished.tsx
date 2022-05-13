@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import calculateWinner from "@/utils/calculateWinner";
 
 const Square = ({ value, onClick }) => {
@@ -58,7 +58,7 @@ const Game = () => {
 
     squares[i] = isXNext ? "X" : "O";
 
-    const newHistory = _history.concat({ squares })
+    const newHistory = _history.concat({ squares });
     setHistory(newHistory);
     setStepNumber(newHistory.length);
     setIsXNext(!isXNext);
@@ -81,7 +81,12 @@ const Game = () => {
     const desc = move ? `Go to move # ${move}` : "Go to game start";
     return (
       <li key={move}>
-        <button className={move === stepNumber ? 'select-move active' : 'select-move'} onClick={() => jumpTo(move)}>{desc}</button>
+        <button
+          className={move === stepNumber ? "select-move active" : "select-move"}
+          onClick={() => jumpTo(move)}
+        >
+          {desc}
+        </button>
       </li>
     );
   });
@@ -100,3 +105,4 @@ const Game = () => {
 };
 
 export default Game;
+export { Square, Board, Game };

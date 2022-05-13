@@ -1,0 +1,10 @@
+// Vitest Snapshot v1
+
+exports[`Square > Renders a button 1`] = `
+<button
+  className="square"
+  onClick={[Function]}
+>
+  X
+</button>
+`;
