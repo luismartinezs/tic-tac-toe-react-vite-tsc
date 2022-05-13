@@ -141,3 +141,44 @@ exports[`Square > Renders a button 1`] = `
   X
 </button>
 `;
+
+exports[`Square > Renders a button 2`] = `
+<button
+  className="square"
+  onClick={[Function]}
+>
+  O
+</button>
+`;
+
+exports[`Square > Renders a button 3`] = `
+<button
+  className="square"
+  onClick={[Function]}
+/>
+`;
+
+exports[`Square > Renders a button with a label dependent on props.value 1`] = `
+<button
+  className="square"
+  onClick={[Function]}
+>
+  X
+</button>
+`;
+
+exports[`Square > Renders a button with a label dependent on props.value 2`] = `
+<button
+  className="square"
+  onClick={[Function]}
+>
+  O
+</button>
+`;
+
+exports[`Square > Renders a button with a label dependent on props.value 3`] = `
+<button
+  className="square"
+  onClick={[Function]}
+/>
+`;

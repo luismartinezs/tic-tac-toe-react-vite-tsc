@@ -1,8 +1,7 @@
 import React from "react";
 import { Square, Board, Game } from "@/components/GameFinished.tsx";
 import { describe, it, expect } from "vitest";
-import renderer from "react-test-renderer";
-import { toUnicode } from "punycode";
+import renderer, { act, create } from "react-test-renderer";
 
 function toJson(component: renderer.ReactTestRenderer) {
   const result = component.toJSON();
@@ -12,21 +11,31 @@ function toJson(component: renderer.ReactTestRenderer) {
 }
 
 describe("Square", () => {
-  it("Renders a button", () => {
-    const component = renderer.create(
-      <Square value="X" onClick={() => null} />
-    );
-    let tree = toJson(component);
+  let component;
+  const testValue = (value) => {
+    act(() => {
+      if (component) {
+        // update component
+        component.update(<Square value={value} onClick={() => null} />);
+      } else {
+        // initialize component
+        component = create(<Square value={value} onClick={() => null} />);
+      }
+    });
+    const tree = toJson(component);
     expect(tree).toMatchSnapshot();
+  };
+  it("Renders a button with a label dependent on props.value", () => {
+    testValue("X");
+    testValue("O");
+    testValue(null);
   });
 });
 
 describe("Board", () => {
   it("Renders board", () => {
     const squares = Array(9).fill(null);
-    const component = renderer.create(
-      <Board squares={squares} onClick={() => null} />
-    );
+    const component = create(<Board squares={squares} onClick={() => null} />);
     let tree = toJson(component);
     expect(tree).toMatchSnapshot();
   });
@@ -34,7 +43,7 @@ describe("Board", () => {
 
 describe("Game", () => {
   it("Renders game", () => {
-    const component = renderer.create(<Game />);
+    const component = create(<Game />);
     let tree = toJson(component);
     expect(tree).toMatchSnapshot();
   });
@@ -48,4 +57,5 @@ describe("Game", () => {
   it.todo("Clicking on any one moves list item, resets Board to that move");
   it.todo("When X wins, show 'Winner: X' message");
   it.todo("After a player wins, clicking on a square does nothing");
+  it.todo("Clicking on Show finish / start button toggles the game");
 });
