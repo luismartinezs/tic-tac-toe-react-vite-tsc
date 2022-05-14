@@ -16,7 +16,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "@/*": ["./src"]
+      "@/*": ["./src/*"]
     },
     "types": ["@testing-library/react", "react/next", "react-dom/next"]
   },
