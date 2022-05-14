@@ -33,7 +33,7 @@ describe("Game", () => {
     const squares = getSquares();
     sequence.forEach((i) => {
       if (i < 0 || i > squares.length - 1) {
-        console.warn(`Warning: Square ${i} is out of bounds`)
+        console.warn(`Warning: Square ${i} is out of bounds`);
         return;
       }
       fireEvent.click(squares[i]);
@@ -125,5 +125,21 @@ describe("Game", () => {
     playMoves([8, 0, 4, 1, 5, 2]);
     expectStatus("Winner: O");
   });
-  it.todo("After a player wins, clicking on a square does nothing");
+  it("After a player wins, clicking on a square does nothing", () => {
+    game = render(<Game />);
+    playMoves([0, 4, 1, 5, 2]);
+    expectBoardState(makeBoardState("XXX OO"));
+    playMoves([0]);
+    expectBoardState(makeBoardState("XXX OO"));
+  });
+  it("Clicking repeatedly on a square does not change board state", () => {
+    game = render(<Game />);
+    playMoves([0]);
+    expectBoardState(makeBoardState("X"));
+    const moves = game.getByTestId("moves");
+    expect(moves.querySelectorAll("li")).toHaveLength(2);
+    playMoves([0, 0, 0, 0]);
+    expectBoardState(makeBoardState("X"));
+    expect(moves.querySelectorAll("li")).toHaveLength(2);
+  });
 });
