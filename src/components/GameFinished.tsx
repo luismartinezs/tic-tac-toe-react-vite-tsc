@@ -1,7 +1,18 @@
 import React, { useState } from "react";
 import calculateWinner from "@/utils/calculateWinner";
+import type { TSquare } from "@/types";
 
-const Square = ({ value, onClick }) => {
+interface SquareProps {
+  value: TSquare;
+  onClick: () => void;
+};
+
+interface BoardProps {
+  squares: TSquare[];
+  onClick: (i: number) => void;
+};
+
+const Square: React.FC<SquareProps> = ({ value, onClick }): JSX.Element => {
   return (
     <button className="square" onClick={() => onClick()}>
       {value}
@@ -9,8 +20,8 @@ const Square = ({ value, onClick }) => {
   );
 };
 
-const Board = ({ squares, onClick }) => {
-  const renderSquare = (i) => (
+const Board: React.FC<BoardProps> = ({ squares, onClick }): JSX.Element => {
+  const renderSquare = (i: number) => (
     <Square value={squares[i]} onClick={() => onClick(i)} />
   );
 
@@ -38,18 +49,18 @@ const Board = ({ squares, onClick }) => {
 const Game = () => {
   const [history, setHistory] = useState([
     {
-      squares: Array(9).fill(null),
+      squares: Array(9).fill(null) as TSquare[],
     },
   ]);
 
   const [isXNext, setIsXNext] = useState(true);
   const [stepNumber, setStepNumber] = useState(0);
 
-  const current = history[stepNumber];
+  const current = history[stepNumber] as { squares: TSquare[] };
 
-  const handleClick = (i) => {
+  const handleClick = (i: number) => {
     const _history = history.slice(0, stepNumber + 1);
-    const current = _history.at(-1);
+    const current = _history.at(-1) as { squares: TSquare[] };
     const squares = [...current.squares];
 
     if (calculateWinner(squares) || squares[i]) {
@@ -72,7 +83,7 @@ const Game = () => {
     status = `Next player: ${isXNext ? "X" : "O"}`;
   }
 
-  const jumpTo = (step) => {
+  const jumpTo = (step: number) => {
     setStepNumber(step);
     setIsXNext(step % 2 === 0);
   };
@@ -97,7 +108,9 @@ const Game = () => {
         <Board squares={current.squares} onClick={(i) => handleClick(i)} />
       </div>
       <div className="game-info">
-        <div data-testid="status" className="status">{status}</div>
+        <div data-testid="status" className="status">
+          {status}
+        </div>
         <ol data-testid="moves">{moves}</ol>
       </div>
     </div>

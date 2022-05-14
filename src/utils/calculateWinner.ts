@@ -1,6 +1,6 @@
-import type { Square } from "@/types";
+import type { TSquare } from "@/types";
 
-function calculateWinner(squares: Array<Square>): Square {
+function calculateWinner(squares: Array<TSquare>): TSquare {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
