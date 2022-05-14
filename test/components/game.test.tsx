@@ -17,13 +17,20 @@ afterEach(() => {
 describe("Game", () => {
   let game;
 
+  function getSquares() {
+    if (!game) {
+      return null;
+    }
+    const board = game.getByTestId("board");
+    return board.querySelectorAll("button");
+  }
+
   // sequence is a sequence of clicks on the board, where each element is a square index, e.g. [0,2,5], indices out of bounds are ignored
   function playMoves(sequence = []) {
     if (!game) {
       return null;
     }
-    const board = game.getByTestId("board");
-    const squares = board.querySelectorAll("button");
+    const squares = getSquares();
     sequence.forEach((i) => {
       if (i < 0 || i > squares.length - 1) {
         return;
@@ -33,9 +40,9 @@ describe("Game", () => {
     return squares;
   }
 
-  function expectBoardState(expected = [], squares = Array(9).fill(null)) {
+  function expectBoardState(expected = []) {
     expected.forEach((exp, i) => {
-      expect(squares[i].textContent).toBe(exp);
+      expect(getSquares()[i].textContent).toBe(exp);
     });
   }
 
@@ -45,6 +52,15 @@ describe("Game", () => {
       .split("")
       .slice(0, 9)
       .map((el) => el.trim());
+  }
+
+  function clickOnMove(i) {
+    if (!game) {
+      return null;
+    }
+    const moves = game.getByTestId("moves");
+    const buttons = moves.querySelectorAll("button");
+    fireEvent.click(buttons[i]);
   }
 
   it("Renders game", () => {
@@ -61,9 +77,8 @@ describe("Game", () => {
 
   it("Clicking on square fills it with X", () => {
     game = render(<Game />);
-    const squares = playMoves([0]);
-    expect(squares[0].textContent).toBe("X");
-    expectBoardState(makeBoardState("X"), squares);
+    playMoves([0]);
+    expectBoardState(makeBoardState("X"));
   });
   it("Clicking on square switches status to 'Next player: O'", () => {
     game = render(<Game />);
@@ -82,10 +97,19 @@ describe("Game", () => {
     playMoves([1]);
     expect(moves.querySelectorAll("li")).toHaveLength(3);
   });
-  it.todo("Clicking on first item of moves list resets Board state");
-  it.todo(
-    "Clicking on last item of moves list returns Board state to that move"
-  );
+  it("Clicking on first item of moves list resets Board state", () => {
+    game = render(<Game />);
+    playMoves([0, 1, 2]);
+    expectBoardState(makeBoardState("XOX"));
+    clickOnMove(2);
+    expectBoardState(makeBoardState("XO"));
+    clickOnMove(1);
+    expectBoardState(makeBoardState("X"));
+    clickOnMove(0);
+    expectBoardState(makeBoardState(""));
+    clickOnMove(3);
+    expectBoardState(makeBoardState("XOX"));
+  });
   it.todo("Clicking on any one moves list item, resets Board to that move");
   it.todo("When X wins, show 'Winner: X' message");
   it.todo("After a player wins, clicking on a square does nothing");
