@@ -98,7 +98,7 @@ const Game = () => {
       </div>
       <div className="game-info">
         <div data-testid="status" className="status">{status}</div>
-        <ol>{moves}</ol>
+        <ol data-testid="moves">{moves}</ol>
       </div>
     </div>
   );

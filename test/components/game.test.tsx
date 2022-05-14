@@ -66,13 +66,20 @@ describe("Game", () => {
     expectBoardState(makeBoardState("X"), squares);
   });
   it("Clicking on square switches status to 'Next player: O'", () => {
-    game = render(<Game />)
-    playMoves([0])
-    const status = game.getByTestId('status')
-    expect(status.textContent).toBe('Next player: O')
-
+    game = render(<Game />);
+    playMoves([0]);
+    const status = game.getByTestId("status");
+    expect(status.textContent).toBe("Next player: O");
   });
-  it.todo("Clicking on square adds new item to moves list");
+  it("Clicking on square adds new item to moves list", () => {
+    game = render(<Game />);
+    const moves = game.getByTestId("moves");
+    expect(moves.querySelectorAll("li")).toHaveLength(1);
+    playMoves([0]);
+    expect(moves.querySelectorAll("li")).toHaveLength(2);
+    playMoves([1]);
+    expect(moves.querySelectorAll("li")).toHaveLength(3);
+  });
   it.todo("Clicking on first item of moves list resets Board state");
   it.todo(
     "Clicking on last item of moves list returns Board state to that move"
