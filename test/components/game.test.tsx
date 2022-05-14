@@ -52,7 +52,6 @@ describe("Game", () => {
   })
   let tree = toJson(component);
   let squares = component.root.findAllByType(Square)
-  console.log(squares[0]._fiber.child)
 
   it("Renders game", () => {
     expect(tree).toMatchSnapshot();
