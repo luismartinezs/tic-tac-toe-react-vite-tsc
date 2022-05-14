@@ -1,11 +1,12 @@
 import React from "react";
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { render, screen, within } from '@testing-library/react'
 import { Square, Board, Game } from "@/components/GameFinished.tsx";
 
 describe('Square', () => {
   it("Renders a button with a label dependent on props.value", () => {
     const square = render(<Square value="X" onClick={() => null} />)
+    expect(square).toMatchSnapshot()
 
     let button = within(screen.getByRole('button'))
     expect(button).toBeDefined()
@@ -25,7 +26,12 @@ describe('Square', () => {
 })
 
 describe("Board", () => {
-  it.todo("Renders board");
+  it("Renders board", () => {
+    const onClick = vi.fn((i) => null)
+    const squares = Array(9).fill(null)
+    const board = render(<Board squares={squares} onClick={onClick} />)
+    expect(board).toMatchSnapshot()
+  });
 });
 
 describe("Game", () => {
