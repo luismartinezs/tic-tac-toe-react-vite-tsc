@@ -51,3 +51,4 @@ Based on this: [https://reactjs.org/tutorial/tutorial.html](https://reactjs.org/
 ## Resources
 
 - Vitest with React testing lib https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib
+- https://www.freecodecamp.org/news/testing-react-hooks/

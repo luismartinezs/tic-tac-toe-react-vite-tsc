@@ -15,7 +15,7 @@ const Board = ({ squares, onClick }) => {
   );
 
   return (
-    <div>
+    <div data-testid="board">
       <div className="board-row">
         {renderSquare(0)}
         {renderSquare(1)}
