@@ -24,11 +24,6 @@ describe('Square', () => {
   })
 })
 
-
-describe("Square", () => {
-  it.todo("Renders a button with a label dependent on props.value");
-});
-
 describe("Board", () => {
   it.todo("Renders board");
 });
