@@ -79,6 +79,8 @@ describe("Game", () => {
     expect(moves.querySelectorAll("li")).toHaveLength(2);
     playMoves([1]);
     expect(moves.querySelectorAll("li")).toHaveLength(3);
+    playMoves([1]);
+    expect(moves.querySelectorAll("li")).toHaveLength(3);
   });
   it.todo("Clicking on first item of moves list resets Board state");
   it.todo(
