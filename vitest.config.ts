@@ -9,6 +9,7 @@ export default defineConfig({
     coverage: {
       reporter: ["text", "json", "html"],
     },
+    setupFiles: 'src/setupTests.js',
   },
   resolve: {
     alias,

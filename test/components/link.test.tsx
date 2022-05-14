@@ -1,32 +1,58 @@
+// react testing library playground
 import React from "react";
-import renderer from "react-test-renderer";
+import {
+  render,
+  fireEvent,
+  waitFor,
+  screen,
+  cleanup,
+  prettyDOM,
+  logRoles,
+  within
+} from "@testing-library/react";
+import { describe, it, expect, afterEach } from "vitest";
 import Link from "@/components/Link";
-import { it, expect } from "vitest";
 
-function toJson(component: renderer.ReactTestRenderer) {
-  const result = component.toJSON();
-  expect(result).toBeDefined();
-  expect(result).not.toBeInstanceOf(Array);
-  return result as renderer.ReactTestRendererJSON;
-}
+afterEach(() => {
+  cleanup();
+});
 
-it("Link changes the class when hovered", () => {
-  const component = renderer.create(
-    <Link page="http://antfu.me">Anthony Fu</Link>
-  );
-  let tree = toJson(component);
-  expect(tree).toMatchSnapshot();
+describe("Link", () => {
+  it("Is rendered", async () => {
+    const component = render(<Link page="http://antfu.me">Anthony Fu</Link>);
+    expect(component).toBeDefined();
+    expect(component).toMatchSnapshot();
+    expect(component.getByText("Anthony Fu")).toBeInTheDocument();
+    expect(screen.getByText("Anthony Fu")).toBeInTheDocument();
+    expect(component.container.firstChild).toMatchInlineSnapshot(`
+    <a
+      class="normal"
+      href="http://antfu.me"
+    >
+      Anthony Fu
+    </a>
+  `);
+    // fireEvent.click(screen.getByText("Anthony Fu")) // navigation is not implemented
+    const items = await screen.findAllByText(/\w/);
+    expect(items).toHaveLength(1);
+    // mouseover event
+    fireEvent.mouseEnter(screen.getByRole("link"));
+    expect(component).toMatchSnapshot();
+    fireEvent.mouseLeave(screen.getByRole("link"));
+    expect(component).toMatchSnapshot();
 
-  // manually trigger the callback
-  tree.props.onMouseEnter();
+    component.rerender(
+      <Link page="https://luis-martinez.net">Luis Martinez</Link>
+    );
+    expect(component.getByText("Luis Martinez")).toBeInTheDocument()
 
-  // re-rendering
-  tree = toJson(component);
-  expect(tree).toMatchSnapshot();
+    console.log(prettyDOM(component.baseElement));
 
-  // manually trigger the callback
-  tree.props.onMouseLeave();
-  // re-rendering
-  tree = toJson(component);
-  expect(tree).toMatchSnapshot();
+    logRoles(component.baseElement)
+
+    const link = within(component.container).getByRole('link')
+    console.log(prettyDOM(link));
+
+    component.unmount();
+  });
 });

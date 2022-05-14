@@ -47,3 +47,7 @@ Based on this: [https://reactjs.org/tutorial/tutorial.html](https://reactjs.org/
 - In the handleClick method, update stepNumber
 - In the handleClick method, use history from start to current stepNumber, and push the next squares to it
 - Pass to Board current step depending on the value of stepNumber, rather than the last history
+
+## Resources
+
+- Vitest with React testing lib https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib
