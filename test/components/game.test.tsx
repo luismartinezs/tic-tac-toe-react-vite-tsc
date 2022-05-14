@@ -1,41 +1,20 @@
 import React from "react";
-import { describe, expect, it, vi } from 'vitest'
-import { render, screen, within } from '@testing-library/react'
-import { Square, Board, Game } from "@/components/GameFinished.tsx";
+import { describe, expect, it, vi, afterEach } from "vitest";
+import { render, screen, within, cleanup } from "@testing-library/react";
+import { Game } from "@/components/GameFinished.tsx";
 
-describe('Square', () => {
-  it("Renders a button with a label dependent on props.value", () => {
-    const square = render(<Square value="X" onClick={() => null} />)
-    expect(square).toMatchSnapshot()
-
-    let button = within(screen.getByRole('button'))
-    expect(button).toBeDefined()
-    expect(button.getByText("X")).toBeDefined()
-
-    square.rerender(<Square value="O" onClick={() => null} />)
-
-    button = within(screen.getByRole('button'))
-    expect(button).toBeDefined()
-    expect(button.getByText("O")).toBeDefined()
-
-    square.rerender(<Square value={null} onClick={() => null} />)
-    button = within(screen.getByRole('button'))
-    expect(button).toBeDefined()
-    expect(button.getByText("")).toBeDefined()
-  })
-})
-
-describe("Board", () => {
-  it("Renders board", () => {
-    const onClick = vi.fn((i) => null)
-    const squares = Array(9).fill(null)
-    const board = render(<Board squares={squares} onClick={onClick} />)
-    expect(board).toMatchSnapshot()
-  });
+afterEach(() => {
+  cleanup();
 });
 
 describe("Game", () => {
-  it.todo("Renders game");
+  let game;
+
+  game = render(<Game />);
+
+  it("Renders game", () => {
+    expect(game).toMatchSnapshot();
+  });
   it.todo("Clicking on square fills it with X");
   it.todo("Clicking on square switches status to 'Next player: O'");
   it.todo("Clicking on square adds new item to moves list");
