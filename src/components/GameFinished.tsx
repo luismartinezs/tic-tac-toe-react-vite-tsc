@@ -97,7 +97,7 @@ const Game = () => {
         <Board squares={current.squares} onClick={(i) => handleClick(i)} />
       </div>
       <div className="game-info">
-        <div className="status">{status}</div>
+        <div data-testid="status" className="status">{status}</div>
         <ol>{moves}</ol>
       </div>
     </div>

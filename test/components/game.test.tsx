@@ -50,7 +50,7 @@ describe("Game", () => {
   it("Renders game", () => {
     game = render(<Game />);
     expect(game).toBeDefined();
-    expect(game).toMatchSnapshot(); // maybe I shouldn't use snapshot testing
+    // expect(game).toMatchSnapshot(); // maybe I shouldn't use snapshot testing
   });
 
   it("Renders a board", () => {
@@ -65,7 +65,13 @@ describe("Game", () => {
     expect(squares[0].textContent).toBe("X");
     expectBoardState(makeBoardState("X"), squares);
   });
-  it.todo("Clicking on square switches status to 'Next player: O'");
+  it("Clicking on square switches status to 'Next player: O'", () => {
+    game = render(<Game />)
+    playMoves([0])
+    const status = game.getByTestId('status')
+    expect(status.textContent).toBe('Next player: O')
+
+  });
   it.todo("Clicking on square adds new item to moves list");
   it.todo("Clicking on first item of moves list resets Board state");
   it.todo(
