@@ -1,31 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 const STATUS = {
-  HOVERED: 'hovered',
-  NORMAL: 'normal',
-}
+  HOVERED: "hovered",
+  NORMAL: "normal",
+};
 
-const Link = ({ page, children }: any) => {
-  const [status, setStatus] = useState(STATUS.NORMAL)
+type LinkProps = {
+  page: string;
+  children?: React.ReactNode;
+};
+
+const Link: React.FC<LinkProps> = ({
+  page,
+  children,
+}: LinkProps): JSX.Element => {
+  const [status, setStatus] = useState(STATUS.NORMAL);
 
   const onMouseEnter = () => {
-    setStatus(STATUS.HOVERED)
-  }
+    setStatus(STATUS.HOVERED);
+  };
 
   const onMouseLeave = () => {
-    setStatus(STATUS.NORMAL)
-  }
+    setStatus(STATUS.NORMAL);
+  };
 
   return (
     <a
       className={status}
-      href={page || '#'}
+      href={page || "#"}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
       {children}
     </a>
-  )
-}
+  );
+};
 
-export default Link
+export default Link;

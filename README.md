@@ -50,5 +50,11 @@ Based on this: [https://reactjs.org/tutorial/tutorial.html](https://reactjs.org/
 
 ## Resources
 
+### Testing
+
 - Vitest with React testing lib https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib
 - https://www.freecodecamp.org/news/testing-react-hooks/
+
+### Typescript
+
+- https://blog.logrocket.com/how-to-use-typescript-with-react-18-alpha/
