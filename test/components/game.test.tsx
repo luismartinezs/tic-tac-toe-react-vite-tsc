@@ -46,12 +46,20 @@ describe("Board", () => {
 });
 
 describe("Game", () => {
+  let component
+  act(() => {
+    component = create(<Game />);
+  })
+  let tree = toJson(component);
+  let squares = component.root.findAllByType(Square)
+  console.log(squares[0]._fiber.child)
+
   it("Renders game", () => {
-    const component = create(<Game />);
-    let tree = toJson(component);
     expect(tree).toMatchSnapshot();
   });
-  it.todo("Clicking on square fills it with X");
+  it("Clicking on square fills it with X", () => {
+
+  });
   it.todo("Clicking on square switches status to 'Next player: O'");
   it.todo("Clicking on square adds new item to moves list");
   it.todo("Clicking on first item of moves list resets Board state");
